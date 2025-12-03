@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Section</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Google Font for section headings -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
+  .about-section {
+    padding: 50px 0;
+    background-color: #f5f1e8;
+  }
+  .about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .about-image {
+    flex: 0 0 auto;
+  }
+  .about-image img {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 60px;
+  }
+  .about-text {
+    flex: 1;
+    text-align: left;
+  }
+  .about-section p {
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+
+  /* Make about text justified for better reading flow */
+  .about-section p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  /* Justify project descriptions only (avoid changing other card text) */
+  .projects-section .card-text,
+  .projects-list-section .card-text {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  /* Section heading style: Poppins for portfolio headings */
+  .about-section h2,
+  .projects-section h2,
+  .projects-list-section h2,
+  .skills-section h2,
+  .contact-section h2,
+  #gallery h2 {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-bottom: 24px;
+    color: #222;
+  }
+
+  /* Additional CSS for Projects Section */
+.projects-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+.card {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow around the card */
+}
+.card-img-top {
+  max-height: 180px; /* Adjust this value to fit the image properly in the card */
+  object-fit: cover; /* This makes sure the image covers the area properly */
+}
+.card-body {
+  padding: 15px;
+}
+.card-title {
+  font-size: 1.25rem;
+}
+.card-text {
+  margin-bottom: 15px;
+}
+
+/* Additional CSS for Skills Section */
+.skills-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+.skills-section .card {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.skills-section .card-img-top {
+  padding: 20px; /* Add padding around your images if needed */
+  background-color: #f8f9fa; /* Adjust the background color if your images have transparent areas */
+  height: 180px; /* Fixed height for consistency */
+  object-fit: contain; /* This will make sure the image is scaled properly within the container */
+  justify-content: center;
+  align-items: center;
+}
+.skills-section .card-body {
+  padding: 15px;
+  text-align: justify;
+}
+.skills-section .card-title {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.skills-section .btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+  text-align: center;
+}
+.skills-section .btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  
+}
+
+/* Additional CSS for Contact Section */
+.contact-section {
+  padding: 50px 0;
+}
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #fff; /* match the email/phone color */
+}
+.contact-section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.social-icon {
+  width: 50px; /* Size of your icons */
+  margin-bottom: 10px;
+}
+/* Hover effect for icons */
+.social-icon:hover {
+  opacity: 0.7;
+}
+/* Style for links in the Contact section */
+.contact-section a {
+  color: #fff;
+  text-decoration: none; /* Removes underline from links */
+  display: inline-block; /* Allows for margin on the bottom */
+  margin-bottom: 10px;
+}
+.contact-section a:hover {
+  color: #ddd; /* Color when hovering over the link */
+}
+
+/* Inline contact layout: email + social links in one row */
+.contact-inline {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.contact-inline a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.contact-inline img {
+  width: 34px;
+  height: 34px;
+}
+.contact-right { text-align: right; }
+
+/* space items evenly across the full-width contact row */
+.contact-inline.space-between {
+  justify-content: space-between;
+  width: 100%;
+}
+.contact-inline a i { font-size: 18px; }
+
+/* CSS for Sticky Navbar */
+.navbar {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adds a shadow for depth */
+}
+
+/* Ensure padding is added to body to avoid content being hidden behind the navbar */
+body { 
+  padding-top: 56px; /* Adjust this value based on the height of your navbar */
+  background-color: #f8f9fb;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Style for navigation bar links */
+.navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f8f9fa; /* Slightly lighter white when hovering over links */
+}
+
+/* Media query for responsive navbar collapsing */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background-color: #343a40; /* Same as navbar color for seamless look */
+  }
+}
+
+
+/* (carousel styles removed to restore original layout) */
+.project-slider-container {
+    margin-top: 40px;
+}
+
+.mySwiper {
+  width: 100%;
+  height: auto; /* allow the container to grow with slide content */
+  position: relative;
+}
+
+/* Ensure slides align to top so content doesn't overflow visually */
+.swiper-wrapper { align-items: flex-start; }
+.swiper-slide { display: flex; justify-content: center; }
+.swiper-slide .card { width: 100%; }
+
+/* Give the projects section some bottom padding to avoid overlap with next section */
+.projects-section { padding-bottom: 48px; }
+
+.project-slide {
+    height: 100%;
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+/* Arrow styling like Amazon */
+.swiper-button-next,
+.swiper-button-prev {
+    color: black;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: white;
+}
+
+/* Projects carousel styles (inline slider inside #projects) */
+.projects-carousel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  padding: 10px 0;
+  overflow: hidden;
+  width: 100%;
+}
+.projects-carousel .carousel-arrow {
+  background: rgba(44,62,80,0.9);
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.projects-carousel .carousel-arrow.left { margin-right: 6px; }
+.projects-carousel .carousel-arrow.right { margin-left: 6px; }
+.projects-carousel .carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+  height: auto;
+  /* Ensure the track always has visible height so cards render inside the slider */
+  min-height: 350px;
+  flex: 1 1 auto; /* allow the track to expand between arrows */
+  align-items: flex-start;
+}
+.projects-carousel .carousel-track::-webkit-scrollbar { display: none; }
+.projects-carousel .carousel-item {
+  scroll-snap-align: start;
+  flex: 0 0 320px; /* base card width */
+  max-width: 320px;
+}
+.projects-carousel .carousel-item .card { min-height: 240px; background: #fff; }
+
+@media (min-width: 992px) {
+  .projects-carousel .carousel-item { flex: 0 0 calc(33.333% - 20px); max-width: calc(33.333% - 20px); }
+}
+@media (min-width: 600px) and (max-width: 991px) {
+  .projects-carousel .carousel-item { flex: 0 0 calc(50% - 16px); max-width: calc(50% - 16px); }
+}
+
+
+</style>
+
+</head>
+<body>
+
+<section id='about' class="about-section">
+  <div class="container">
+    <h2>ABOUT</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>Hi, I'm Shiamilee, a Data Analyst with hands-on experience in turning complex datasets into clear, actionable insights. I specialize in Python (Pandas) for data cleaning, Excel and SQL for analysis, and Power BI for creating interactive dashboards that help businesses make informed decisions.</p>
+        <p>I've worked on several real-world data projects, including:</p>
+        <p><strong>Mahakumbh'25 Integrated Footfall Analysis</strong> – analyzed large-scale event data to study visitor patterns, peak hours, and resource allocation insights.</p>
+        <p><strong>QuickBite Crisis Recovery Dashboard</strong> – built a Power BI dashboard to track customer sentiment, sales dips, and recovery trends for a food delivery platform.</p>
+        <p><strong>Business Sales E-Commerce Analysis</strong> – performed sales performance analysis, product insights, customer segmentation, and growth trend identification.</p>
+        <p><strong>Agentic AI Project: Machine Fault Detection Chatbot</strong> – developed an intelligent system that detects machine faults and provides automated troubleshooting responses.</p>
+        <p>I enjoy solving real problems using data, exploring patterns, and presenting insights in a simple and business-friendly way. I'm constantly improving my analytical and visualization skills and love working on projects where data can create meaningful impact.</p>
+        <p>I'm looking for opportunities where I can contribute to data-driven decision-making and continue growing as a Data Analyst.</p>
+      </div>
+      <div class="about-image">
+        <img src="images/about/1.png" alt="About Me">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects (Swiper slider) -->
+<section id="projects" class="projects-section" style="background-color: #f0f3f7;">
+  <div class="container">
+    <h2 class="text-center mb-4">PROJECTS</h2>
+
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+
+        <!-- Project 1 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <img src="images/projects/thriller.jpg" class="card-img-top" alt="Project 1">
+            <div class="card-body">
+              <h5 class="card-title">Murder Mystery SQL Project</h5>
+              <p class="card-text">A SQL-based detective project where I solved a fictional murder case using relational database exploration. I used advanced SQL querying—joins, subqueries, aggregations, filtering logic, and pattern tracing—to uncover suspects, analyze digital footprints, and identify the real culprit.This project demonstrates my ability to think analytically, break down ambiguous problems, and extract insights purely from raw data tables.</p>
+              <div class="text-center" mb-2>
+              <a href="https://www.linkedin.com/posts/shiamilee-selvam_sqlchallenge-sql21daychallenge-indiandataclub-activity-7400421918186795008-pJ6z?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFV9-1MBLbwNK-NI6UnZ1E6ovq356FjuoC0" class="btn btn-primary" target="_blank">Solution Video</a>
+              <a href="https://github.com/shalee27-git/Murder-Mystery-SQL-Project" class="btn btn-secondary" target="_blank">Source Code</a>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <img src="images/projects/Mahakumbh-2025.jpeg" class="card-img-top" alt="Project 2">
+            <div class="card-body">
+              <h5 class="card-title">Mahakumbh'25 Footfall Analysis</h5>
+              <p class="card-text">A real-world inspired analytics project analyzing large-scale event footfall for Mahakumbh’25. Using Python (Pandas), Excel, and Power BI, I integrated multi-source datasets to track crowd density, peak hours, demographic distribution, and movement patterns across regions. The dashboard helps stakeholders optimize crowd management, allocate resources, and improve visitor safety through data-driven decisions.</p>
+              <div class="text-center" mb-2>
+              <a href="https://github.com/shalee27-git/Maha-Kumbh-25-Footfall-Analytics" class="btn btn-primary" target="_blank">Source Code</a>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <img src="images/projects/Quickbite.jpg" class="card-img-top" alt="Project 3">
+            <div class="card-body">
+              <h5 class="card-title">Quickbite Express Crisis Recovery</h5>
+              <p class="card-text">A business intelligence project where I analyzed the post-crisis performance of a QuickBite restaurant chain. Using Power BI and SQL, I identified revenue dips, operational gaps, and customer behaviour changes, and built KPIs showing recovery trends, store performance, order patterns, and operational bottlenecks. The dashboard provides recommendations for menu optimization, demand forecasting, and strategic recovery planning.</p>
+              <div class="text-center" mb-2>
+              <a href="https://www.linkedin.com/posts/shiamilee-selvam_codebasics-resumechallenge-dataanalytics-activity-7392113653636034560-0g0s?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFV9-1MBLbwNK-NI6UnZ1E6ovq356FjuoC0" class="btn btn-primary" target="_blank">Analysis Video</a>
+              <a href="https://github.com/shalee27-git/QuickBite-Express-Crisis-Recovery" class="btn btn-secondary" target="_blank">View Report</a>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <img src="images/projects/44.avif" class="card-img-top" alt="Project 4">
+            <div class="card-body">
+              <h5 class="card-title">Business sales dashboard</h5>
+              <p class="card-text">A deep-dive analytical project on an e-commerce dataset to understand revenue drivers, customer purchasing trends, and product performance. Using Python, Pandas, Excel and Power BI, I analyzed sales funnels, seasonality, profit margins, regional performance, and customer segmentation. The insights help stakeholders boost sales, improve marketing targeting, and optimize inventory planning.</p>
+              <div class="text-center" mb-2>
+
+              <a href="https://github.com/shalee27-git/Future_DS_01/tree/main" class="btn btn-primary" target="_blank">View Report</a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <img src="images/projects/5.png" class="card-img-top" alt="Project 5">
+            <div class="card-body">
+              <h5 class="card-title">Machine Fault Detection Chatbot</h5>
+              <p class="card-text">I built an intelligent machine fault-diagnosis chatbot using Agentic AI workflows deployed on IBM Cloud. The system analyzes user-reported issues, identifies probable machine faults, and recommends corrective actions in real time. The solution demonstrates how generative AI can streamline maintenance workflows, reduce downtime, and assist technicians with faster fault identification and decision-making.</p>
+              <div class="text-center" mb-2>
+              <a href="https://github.com/shalee27-git/IBM-Internship" class="btn btn-primary" target="_blank">Source Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- Swiper navigation -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Skills Section -->
+<section id="skills" class="skills-section" style="background-color: #e8f5a8;">
+  <div class="container">
+    <h2 class="text-center">Skills</h2>
+    <div class="row">
+      <!-- Skill 1 -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card">
+          <img src="images/skills/1.png" class="card-img-top" alt="Python">
+          <div class="card-body">
+            <h5 class="card-title">Python</h5>
+            <div class="text-center">
+            <p class="card-text">I use Python for data cleaning, preprocessing, and exploratory data analysis using Pandas and NumPy. I build clear visualizations with Pandas libraries in Jupyter Notebook, automate repetitive tasks, and work comfortably with CSV, Excel, and JSON datasets to extract meaningful insights.</p>
+            <a href="https://www.mygreatlearning.com/certificate/DKVQHNJS?referrer_code=GL0QSSU1R6G6Q" class="btn btn-outline-primary" target="_blank">Show Credential</a>
+          </div>
+          </div>
+        </div>
+      </div>
+      <!-- Skill 2 -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card">
+          <img src="images/skills/2.webp" class="card-img-top" alt="Power BI">
+          <div class="card-body">
+            <h5 class="card-title">Power BI</h5>
+            <div class="text-center">
+            <p class="card-text">I design interactive dashboards in Power BI using Power Query for data transformation and DAX for calculated metrics. I focus on clean data models, KPI-driven visuals, and reports that help stakeholders quickly understand trends, performance, and business outcomes.</p>
+            <a href="https://certx.in/certificate/36a28147-6eed-47a5-8342-e5f926ebba61545061" class="btn btn-outline-primary" target="_blank">Show Credential</a>
+          </div>
+          </div>
+        </div>
+      </div>
+      <!-- Skill 3 -->
+<div class="col-lg-3 col-md-6 mb-4">
+  <div class="card">
+    <img src="images/skills/3.png" class="card-img-top" alt="SQL">
+    <div class="card-body">
+      <h5 class="card-title">Structured Query Language</h5>
+      <p class="card-text">
+        I write efficient SQL queries involving joins, CTEs, window functions, aggregates, and subqueries 
+        to analyze relational datasets. I work with MySQL/PostgreSQL and focus on extracting patterns, 
+        cleaning data, and generating insights that support decision-making.
+      </p>
+
+      <!-- Center the button -->
+      <div class="text-center">
+        <a href="https://www.testdome.com/certificates/d7826ffc26ad4797a6f74debe049bea9" 
+           class="btn btn-outline-primary" 
+           target="_blank">
+          Show Credential
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+      <!-- Skill 4 -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card">
+          <img src="images/skills/4.png" class="card-img-top" alt="Data Analytics">
+          <div class="card-body">
+            <h5 class="card-title">Data Analytics</h5>
+            
+            <p class="card-text">Completed Google Data Analytics Professional Certificate which taught me to choose the right visuals presenting clear, actionable insights. I structure dashboards and reports in a way that helps business users understand the story behind the data and make informed decisions.</p>
+            <div class="text-center">
+            <a href="https://www.coursera.org/account/accomplishments/specialization/FHAVVRGROW4V" class="btn btn-outline-primary" target="_blank">Show Credential</a>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- (gallery carousel removed) -->
+
+<!-- Contact Me Section -->
+<section id="contact" class="contact-section text-center text-white" style="background-color: #2c3e50;">
+  <div class="container">
+    <h2>CONTACT ME</h2>
+    <div class="row">
+      <div class="col-12">
+        <div class="contact-inline space-between">
+          <a href="mailto:shiamileecs@gmail.com">
+            <i class="fas fa-envelope"></i>
+            <span>shiamileecs@gmail.com</span>
+          </a>
+          <a href="https://linkedin.com/in/shiamilee-selvam" target="_blank">
+            <img src="icons/linkedin.png" alt="LinkedIn">
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/shalee27-git" target="_blank">
+            <img src="icons/github.png" alt="GitHub">
+            <span>GitHub</span>
+          </a>
+          <a href="tel:+918270316019">
+            <i class="fas fa-phone"></i>
+            <span>+91 8270316019</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #2c3e50;">
+  <div class="container">
+    <a class="navbar-brand" href="#home">Portfolio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#projects">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#skills">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Bootstrap JS and dependencies (jQuery and Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,       // show 3 project cards at a time on large screens
+    slidesPerGroup: 3,      // move 3 slides per navigation click
+    spaceBetween: 30,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    centeredSlides: false,
+
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    // autoplay removed so slides only change when user navigates
+
+    breakpoints: {
+        0: { slidesPerView: 1, slidesPerGroup: 1 },
+        600: { slidesPerView: 2, slidesPerGroup: 2 },
+        1000: { slidesPerView: 3, slidesPerGroup: 3 }
+    }
+  });
+</script>
+
+
+
+
+</body>
+</html>
